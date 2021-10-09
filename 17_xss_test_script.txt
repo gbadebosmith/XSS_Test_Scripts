@@ -1,0 +1,5 @@
+Stored xss
+Enter the following into the comment box: <script>alert(1)</script>
+Enter a name, email and website.
+Click "Post comment".
+Go back to the blog.

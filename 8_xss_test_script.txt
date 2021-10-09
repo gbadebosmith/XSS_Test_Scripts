@@ -1,0 +1,7 @@
+Reflected xss
+Visit the following URL, replacing your-lab-id with your lab ID:
+https://your-lab-id.web-security-academy.net/?%27accesskey=%27x%27onclick=%27alert(1) This sets the X key as an access key for the whole page. When a user presses the access key, the alert function is called.
+To trigger the exploit on yourself, press one of the following key combinations:
+On Windows: ALT+SHIFT+X
+On MacOS: CTRL+ALT+X
+On Linux: Alt+X

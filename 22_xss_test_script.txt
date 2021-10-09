@@ -1,0 +1,5 @@
+dom xss
+Enter a random alphanumeric string into the search box.
+View the page source and observe that your random string is enclosed in an ng-app directive.
+Enter the following AngularJS expression in the search box: {{$on.constructor('alert(1)')()}}
+Click search

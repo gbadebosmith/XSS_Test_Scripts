@@ -1,0 +1,34 @@
+Stored xss
+Inject a standard XSS vector, such as: <img src=1 onerror=print()>
+
+Observe that this gets blocked. In the next few steps, we'll use use Burp Intruder to test which tags and attributes are being blocked.
+
+With your browser proxying traffic through Burp Suite, use the search function in the lab. Send the resulting request to Burp Intruder.
+
+In Burp Intruder, in the Positions tab, click "Clear §". Replace the value of the search term with: <>
+
+Place the cursor between the angle brackets and click "Add §" twice, to create a payload position. The value of the search term should now look like: <§§>
+
+Visit the XSS cheat sheet and click "Copy tags to clipboard".
+
+In Burp Intruder, in the Payloads tab, click "Paste" to paste the list of tags into the payloads list. Click "Start attack".
+
+When the attack is finished, review the results. Note that all payloads caused an HTTP 400 response, except for the body payload, which caused a 200 response.
+
+Go back to the Positions tab in Burp Intruder and replace your search term with: <body%20=1>
+
+Place the cursor before the = character and click "Add §" twice, to create a payload position. The value of the search term should now look like: <body%20§§=1>
+
+Visit the XSS cheat sheet and click "copy events to clipboard".
+
+In Burp Intruder, in the Payloads tab, click "Clear" to remove the previous payloads. Then click "Paste" to paste the list of attributes into the payloads list. Click "Start attack".
+
+When the attack is finished, review the results. Note that all payloads caused an HTTP 400 response, except for the onresize payload, which caused a 200 response.
+
+Go to the exploit server and paste the following code, replacing your-lab-id with your lab ID:
+
+NB: payload with 200 success is ?search=<body%20onresize=1> and change to ?search=%22%3E%3Cbody%20onresize=print()%3E"
+
+<iframe src="https://your-lab-id.web-security-academy.net/?search=%22%3E%3Cbody%20onresize=print()%3E" onload=this.style.width='100px'>
+
+Click "Store" and "Deliver exploit to victim".
